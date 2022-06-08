@@ -123,7 +123,7 @@ newPool pc = do
 
     -- Collect stale resources from the pool once per second.
     collector pools = forever $ do
-      threadDelay 1000000
+      threadDelay 1000000000
       now <- getMonotonicTime
       let isStale e = now - lastUsed e > poolCacheTTL pc
       mapM_ (cleanStripe isStale (freeResource pc) . stripeVar) pools
