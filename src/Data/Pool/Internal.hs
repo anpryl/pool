@@ -123,7 +123,7 @@ newPool pc = do
 
     -- Collect stale resources from the pool once per second.
     collector pools = forever $ do
-      threadDelay 1000000000
+      threadDelay (10 * 1000000)
       putStrLn "Cleaning up pool"
       now <- getMonotonicTime
       let isStale e = now - lastUsed e > poolCacheTTL pc
